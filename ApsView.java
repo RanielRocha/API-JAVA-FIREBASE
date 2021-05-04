@@ -15,17 +15,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableModel;
 
 public class ApsView extends javax.swing.JFrame {
-    private String colunas[ ] = {"Fauna/Flora", "Grupo", "FamÌlia", "EspÈcie (Simplificada)", "Nome Comum", "Categoria","Sigla Categoria", "Bioma", "Principais AmeaÁas", "PresenÁa em ¡reas Protegidas", "Plano de AÁ„o Nacional para ConservaÁ„o (PAN)", "Ordenamento Pesqueiro", "NÌvel de ProteÁ„o na EstratÈgia Nacional", "EspÈcie exclusiva do Brasil", "Estados de OcorrÍncia"};
-    // esse objeto ser· vinculado com a tabela
+    private String colunas[ ] = {"Fauna/Flora", "Grupo", "Fam√≠lia", "Esp√©cie (Simplificada)", "Nome Comum", "Categoria","Sigla Categoria", "Bioma", "Principais Amea√ßas", "Presen√ßa em √Åreas Protegidas", "Plano de A√ß√£o Nacional para Conserva√ß√£o (PAN)", "Ordenamento Pesqueiro", "N√≠vel de Prote√ß√£o na Estrat√©gia Nacional", "Esp√©cie exclusiva do Brasil", "Estados de Ocorr√™ncia"};
+    // esse objeto ser√° vinculado com a tabela
     // selecione o objeto tabela, clique em PROPRIEDADES e encontre MODEL
-    // no combo "Definir Propriedades" escolha "CÛdigo Personalizado"
+    // no combo "Definir Propriedades" escolha "C√≥digo Personalizado"
     // digite o objeto DefaultTableModel, neste exemplo a tabela(criado logo abaixo)
     private ArrayList<ModeloTabelas> lista = new ArrayList<ModeloTabelas>( );
     private ApsTabelasModelo tabela;
@@ -36,29 +34,12 @@ public class ApsView extends javax.swing.JFrame {
         
         this.setPreferredSize(new Dimension(850, 650));
         initComponents();
-//        setOperacao(""); // inicializa o form no modo CONSULTA
         setLocationRelativeTo(null);
 
-        // adiciona evento para qdo navegar no JTable, atualizar os dados nos JTextField¬¥s
-//        tblConsulta.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-//
-//            @Override
-//            public void valueChanged(ListSelectionEvent evt) {
-//                if (evt.getValueIsAdjusting()) {
-//                    return;
-//                }
-//                int selecionado = tblConsulta.getSelectedRow();
-//                if (selecionado >= 0) {
-//                    mostrar(lista.get(selecionado));
-//                }
-//            }
-//        });
-//        setVisible(true);
-//        pack();
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jPanel_Titulo = new javax.swing.JPanel();
@@ -102,7 +83,7 @@ public class ApsView extends javax.swing.JFrame {
 
         jLabel_Titulo.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel_Titulo.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_Titulo.setText("INTEGRA«√O JAVA COM GOOGLE FIREBASE");
+        jLabel_Titulo.setText("INTEGRA√á√ÉO JAVA COM GOOGLE FIREBASE");
 
         jPanel_Botoes.setAutoscrolls(true);
         jPanel_Botoes.setPreferredSize(new java.awt.Dimension(853, 51));
@@ -201,7 +182,7 @@ public class ApsView extends javax.swing.JFrame {
 
         jTabbedPane2.setBackground(new java.awt.Color(204, 204, 204));
         jTabbedPane2.setForeground(new java.awt.Color(51, 51, 51));
-        jTabbedPane2.setToolTipText("OpÁıes de Pesquisa ");
+        jTabbedPane2.setToolTipText("Op√ß√µes de Pesquisa ");
 
         jPanel_Filtro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -225,12 +206,12 @@ public class ApsView extends javax.swing.JFrame {
         });
 
         lblCons_Especie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblCons_Especie.setText("EspÈcie");
+        lblCons_Especie.setText("Esp√©cie");
 
         edtCons_Especie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         lblCons_Familia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblCons_Familia.setText("FamÌlia");
+        lblCons_Familia.setText("Fam√≠lia");
 
         lblCons_Grupo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblCons_Grupo.setText("Grupo");
@@ -241,14 +222,14 @@ public class ApsView extends javax.swing.JFrame {
         edtCons_PrincAmeacas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         lblCons_CatAmeaca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblCons_CatAmeaca.setText("Categoria AmeaÁa");
+        lblCons_CatAmeaca.setText("Categoria Amea√ßa");
 
         edtCons_Bioma.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         edtCons_CatAmeaca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         lblCons_PrincAmeacas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblCons_PrincAmeacas.setText("Principais AmeaÁas");
+        lblCons_PrincAmeacas.setText("Principais Amea√ßas");
 
         edtCons_EstadoOcorr.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -263,7 +244,7 @@ public class ApsView extends javax.swing.JFrame {
         });
 
         lblCon_EstadoOcorr.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblCon_EstadoOcorr.setText("Estados de OcorrÍncia");
+        lblCon_EstadoOcorr.setText("Estados de Ocorr√™ncia");
 
         cBox_FaunaFlora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fauna", "Flora" }));
 
@@ -394,7 +375,7 @@ public class ApsView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("OpÁıes de Pesquisa ", painelCONSULTA);
+        jTabbedPane2.addTab("Op√ß√µes de Pesquisa ", painelCONSULTA);
 
         javax.swing.GroupLayout jPanel_PesquisaLayout = new javax.swing.GroupLayout(jPanel_Pesquisa);
         jPanel_Pesquisa.setLayout(jPanel_PesquisaLayout);
@@ -440,44 +421,44 @@ public class ApsView extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
+    private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {                                            
         conectar( );             
-    }//GEN-LAST:event_btnConectarActionPerformed
+    }                                           
 
-    private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
+    private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {                                            
         filtroPesquisa( );
-    }//GEN-LAST:event_btnConsultaActionPerformed
+    }                                           
 
-    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {                                          
         edtCons_Especie.setText("");
         edtCons_Bioma.setText("");
         edtCons_CatAmeaca.setText("");
         edtCons_PrincAmeacas.setText("");
         edtCons_NomeComum.setText("");
         edtCons_EstadoOcorr.setText("");
-    }//GEN-LAST:event_btnLimparActionPerformed
+    }                                         
 
-    private void btnSincronizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSincronizarActionPerformed
+    private void btnSincronizarActionPerformed(java.awt.event.ActionEvent evt) {                                               
         sincronizar( );
-    }//GEN-LAST:event_btnSincronizarActionPerformed
+    }                                              
 
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {                                        
         System.exit(0);
-    }//GEN-LAST:event_btnSairActionPerformed
+    }                                       
 
-    private void edtCons_NomeComumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtCons_NomeComumActionPerformed
+    private void edtCons_NomeComumActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         // TODO add your handling code here:
-    }//GEN-LAST:event_edtCons_NomeComumActionPerformed
+    }                                                 
 
-    private void cBox_GrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBox_GrupoActionPerformed
+    private void cBox_GrupoActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-    }//GEN-LAST:event_cBox_GrupoActionPerformed
+    }                                          
 
-    private void cBox_FamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBox_FamiliaActionPerformed
+    private void cBox_FamiliaActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-    }//GEN-LAST:event_cBox_FamiliaActionPerformed
+    }                                            
         
 
     private void conectar( ) {
@@ -508,7 +489,7 @@ public class ApsView extends javax.swing.JFrame {
 
             });
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro na Consulta do Usu·rio \n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro na Consulta do Usu√°rio \n" + e.getMessage());
         }
     }
     
@@ -549,40 +530,25 @@ public class ApsView extends javax.swing.JFrame {
                    teste.setEstadoOcorrencia(x[14]);
                    
                    lista.add(teste);
-//                    Gson gson = new Gson( );
-//                   String arquivoJson = gson.toJson(teste);
-//                    gson.toJson(teste);
+
 
                 }
                
-//                    List<Gson> gson = new ArrayList<Gson( )>; // conversor
-//                    gson.add(teste);
-//                    String arquivoJson = gson.toJson(teste);
-
-                    
-//                    apsFirebase.child("especie").setValueAsync(teste);
-                    Map<String, ModeloTabelas> users = new HashMap<>();
-                    users.put("especie", teste);
-                    gson.toJson(users);
-                    
-                    apsFirebase.setValueAsync(gson);
 
 
-//                            setValue(gson, new DatabaseReference.CompletionListener( ) {
-//                        @Override
-//                        public void onComplete(DatabaseError de, DatabaseReference dr) {
-////                            gson.toJson(teste);
-////                            lista.add(teste);
-////                            JOptionPane.showMessageDialog(null, "Dados Gravados com Sucesso");
-//    //                        lblMensagem.setText("");
-//                        }
-//                    });
+                        apsFirebase.child("especie").setValue(teste, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError de, DatabaseReference dr) {
+                            gson.toJson(teste);
 
-                    // exibindo o JSON
-//                    System.out.println(arquivoJson + "\n");
+//                            JOptionPane.showMessageDialog(null, "Dados Gravados com Sucesso");
+    //                        lblMensagem.setText("");
+                        }
+                    });
+
                
            } catch (FileNotFoundException e) {
-               System.out.println("Arquivo n„o encontrado: \n" + e.getMessage( ));
+               System.out.println("Arquivo n√£o encontrado: \n" + e.getMessage( ));
            } catch (ArrayIndexOutOfBoundsException e) {
                System.out.println(" IndexOutOfBounds: \n" + e.getMessage( ));
            } catch (IOException e) {
@@ -693,7 +659,7 @@ public class ApsView extends javax.swing.JFrame {
         });
     }
         
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton btnConectar;
     private javax.swing.JButton btnConsulta;
     private javax.swing.JButton btnLimpar;
@@ -726,5 +692,5 @@ public class ApsView extends javax.swing.JFrame {
     private javax.swing.JLabel lblCons_PrincAmeacas;
     private javax.swing.JPanel painelCONSULTA;
     private javax.swing.JTable tblConsulta;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
