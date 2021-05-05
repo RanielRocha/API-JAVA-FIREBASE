@@ -15,6 +15,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableModel;
@@ -27,8 +29,8 @@ public class ApsView extends javax.swing.JFrame {
     // digite o objeto DefaultTableModel, neste exemplo a tabela(criado logo abaixo)
     private ArrayList<ModeloTabelas> lista = new ArrayList<ModeloTabelas>( );
     private ApsTabelasModelo tabela;
-    private DatabaseReference apsFirebase = FirebaseDatabase.getInstance( ).getReference("server/saving-data/fireblog").child("users");
-    
+    private DatabaseReference apsFirebase = FirebaseDatabase.getInstance( ).getReference( ).child("users");
+     
     public ApsView() {
         initComponents();
         
@@ -82,7 +84,7 @@ public class ApsView extends javax.swing.JFrame {
         jPanel_Titulo.setToolTipText("");
 
         jLabel_Titulo.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jLabel_Titulo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Titulo.setForeground(new java.awt.Color(0, 0, 0));
         jLabel_Titulo.setText("INTEGRAÇÃO JAVA COM GOOGLE FIREBASE");
 
         jPanel_Botoes.setAutoscrolls(true);
@@ -277,7 +279,7 @@ public class ApsView extends javax.swing.JFrame {
                             .addComponent(lblCons_Grupo)
                             .addComponent(cBox_Grupo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(edtCons_CatAmeaca, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(jPanel_FiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(edtCons_PrincAmeacas, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
                     .addComponent(lblCons_PrincAmeacas, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -360,9 +362,7 @@ public class ApsView extends javax.swing.JFrame {
             .addGroup(painelCONSULTALayout.createSequentialGroup()
                 .addGroup(painelCONSULTALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel_Filtro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(painelCONSULTALayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1096, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         painelCONSULTALayout.setVerticalGroup(
@@ -406,7 +406,7 @@ public class ApsView extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel_Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(57, Short.MAX_VALUE)))
+                    .addContainerGap(22, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -472,8 +472,8 @@ public class ApsView extends javax.swing.JFrame {
                     lista.clear( );
 
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        ModeloTabelas user = ds.getValue(ModeloTabelas.class);
-                        lista.add(user);
+                        ModeloTabelas dado = ds.getValue(ModeloTabelas.class);
+                        lista.add(dado);
                     }
                     tabela = new ApsTabelasModelo(lista, colunas);
                     tblConsulta.setModel((TableModel) tabela);
@@ -483,7 +483,7 @@ public class ApsView extends javax.swing.JFrame {
 
                 @Override
                 public void onCancelled(DatabaseError e) {
-                    JOptionPane.showMessageDialog(null, "Consulta Cancelada \n" + e.getMessage());
+                    JOptionPane.showMessageDialog(null, "Operação Cancelada \n" + e.getMessage());
 
                 }
 
@@ -494,7 +494,7 @@ public class ApsView extends javax.swing.JFrame {
     }
     
     private void sincronizar( ) {
-           String csvArquivo = "C:\\Users\\ranie\\Desktop\\testesAPS.csv";
+           String csvArquivo = "C:\\Users\\ranie\\Documents\\lista-de-especies-ameacas-2020-separador.csv";
 
            BufferedReader conteudoCSV = null;
            
@@ -503,15 +503,13 @@ public class ApsView extends javax.swing.JFrame {
            String csvSeparador = ";";
                       
            try {
-               
                conteudoCSV = new BufferedReader(new FileReader(csvArquivo));
-               
-               ModeloTabelas teste = new ModeloTabelas( );
-               Gson gson = new Gson( );
-
+                              
                while ((linha = conteudoCSV.readLine( )) != null) {
                    
                    String [ ] x = linha.split(csvSeparador);
+                   
+                   ModeloTabelas teste = new ModeloTabelas( );
                    
                    teste.setFaunaFlora(x[0]);
                    teste.setGrupo(x[1]);
@@ -530,23 +528,25 @@ public class ApsView extends javax.swing.JFrame {
                    teste.setEstadoOcorrencia(x[14]);
                    
                    lista.add(teste);
+                   
+                    Gson gson = new Gson(); // conversor
+//                    String arquivoJson = gson.toJson(teste);
 
+//                Map<String, lista> users = new HashMap<>();
+//                users.put("alanisawesome", new teste("June 23, 1912", "Alan Turing"));
+//                users.put("gracehop", new teste("December 9, 1906", "Grace Hopper"));
 
-                }
+               apsFirebase.child("especie").setValue(lista, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(DatabaseError de, DatabaseReference dr) {
+//                        lista.add(teste);
+                        gson.toJson(lista);
+//                        JOptionPane.showMessageDialog(null, "Dados Gravados com Sucesso");
+//                        lblMensagem.setText("");
+                    }
+                });
                
-
-
-                        apsFirebase.child("especie").setValue(teste, new DatabaseReference.CompletionListener() {
-                        @Override
-                        public void onComplete(DatabaseError de, DatabaseReference dr) {
-                            gson.toJson(teste);
-
-//                            JOptionPane.showMessageDialog(null, "Dados Gravados com Sucesso");
-    //                        lblMensagem.setText("");
-                        }
-                    });
-
-               
+               }
            } catch (FileNotFoundException e) {
                System.out.println("Arquivo não encontrado: \n" + e.getMessage( ));
            } catch (ArrayIndexOutOfBoundsException e) {
